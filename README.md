@@ -38,10 +38,10 @@ Apply MVVM architecture pattern.
 5.  **Pod Using**
 
 - Kingfisher
-- - Kingfisher is a powerful, pure-Swift library for downloading and caching images from API more details you can find it in
+  - Kingfisher is a powerful, pure-Swift library for downloading and caching images from API more details you can find it in
     https://github.com/onevcat/Kingfisher
 - ESPullToRefresh
-- - is an easy-to-use component that give pull-to-refresh and infinite-scrolling implemention for developers. more details you can finf it here https://github.com/eggswift/pull-to-refresh
+  - is an easy-to-use component that give pull-to-refresh and infinite-scrolling implemention for developers. more details you can finf it here https://github.com/eggswift/pull-to-refresh
 
 6.  **Movie List**
 
