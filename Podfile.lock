@@ -1,0 +1,22 @@
+PODS:
+  - ESPullToRefresh (2.9.3)
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
+
+DEPENDENCIES:
+  - ESPullToRefresh
+  - Kingfisher
+
+SPEC REPOS:
+  trunk:
+    - ESPullToRefresh
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+
+PODFILE CHECKSUM: 17b3a755e2c1ff57fac0753b95d3c3d34244782c
+
+COCOAPODS: 1.11.2
