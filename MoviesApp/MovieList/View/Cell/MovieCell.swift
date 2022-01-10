@@ -31,7 +31,7 @@ class MovieCell : UITableViewCell{
         let  url = URL(string: String(format: Domain.assestUrl()+(movieData.posterPath)! ))
         
         let processor = DownsamplingImageProcessor(size: poster.bounds.size)
-        |> RoundCornerImageProcessor(cornerRadius: 20)
+        |> RoundCornerImageProcessor(cornerRadius: 12)
         poster.kf.indicatorType = .activity
         poster.kf.setImage(
             

@@ -25,11 +25,9 @@ extension Domain {
     static func movieDetailsUrl() -> String {
         return baseUrl() + APIEndpoint.movieDetails + Domain.apiKey
     }
-    
     static func assestUrl() -> String {
         return Domain.assest + "w154"
     }
-    
 }
 
 struct Constants {

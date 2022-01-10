@@ -38,10 +38,11 @@ class MovieListViewModel : MovieListViewModelProtocol {
         _trendingService.fetchTrendingMovies(pageNumber: pageNumber) {[weak self] (jsonArray) in
             if let jsonArray = jsonArray {
                 print(jsonArray.count)
-                self?.movieTrendigArray.value = jsonArray
+                self?.movieTrendigArray.value.append(contentsOf: jsonArray)
             }
             completion()
             
         }
     }
 }
+

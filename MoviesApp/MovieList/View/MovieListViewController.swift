@@ -18,10 +18,7 @@ class MovieListViewController: UIViewController {
     
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    //MARK: - Private Declarations
-    private var spinner = UIActivityIndicatorView(style: .large)
-    
+ 
     private enum MovieTableSections : Int, CaseIterable {
         case logo = 0, playing, popular
     }
@@ -32,7 +29,7 @@ class MovieListViewController: UIViewController {
         
         viewModel = MovieListViewModel( trendingService: TrendingMoviesService(), movieDetailService: MovieDetailService())
         showLoader()
-        setupTableView()
+       setupTableView()
     }
     
     func setupTableView() {
@@ -82,7 +79,7 @@ class MovieListViewController: UIViewController {
     func showEmptyView() {
         self.moviesTableView.isHidden = true
         self.emptyView.isHidden = false
-        self.activityIndicator.isHidden = true
+        self.activityIndicator.isHidden = false
     }
     
     ///
@@ -146,7 +143,7 @@ extension MovieListViewController : UITableViewDelegate {
         view.tintColor = Constants.backgroundHearderTableViewColor
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = Constants.titleHearderTableViewColor
-        header.textLabel?.font = UIFont.systemFont(ofSize: 12)
+        header.textLabel?.font = UIFont.systemFont(ofSize: 14)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

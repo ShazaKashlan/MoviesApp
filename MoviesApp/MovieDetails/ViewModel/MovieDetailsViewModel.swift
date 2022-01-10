@@ -15,12 +15,11 @@ protocol MovieDetailsViewModelProtocol : AnyObject {
 class MovieDetailsViewModel : MovieDetailsViewModelProtocol {
     
     var movieData: MovieResponse {
-        return _movieDictionary!
+        return _movieDetails!
     }
     
-    private var _movieDictionary: MovieResponse?
+    private var _movieDetails: MovieResponse?
     private let movieDetailService : MovieDetailServiceProtocol!
-    
     
     init(movieDetailService: MovieDetailServiceProtocol) {
         self.movieDetailService = movieDetailService
@@ -28,7 +27,7 @@ class MovieDetailsViewModel : MovieDetailsViewModelProtocol {
     func loadMovieDetail(movieId: Int, completion: @escaping () -> Void) {
         movieDetailService.getMovieDetail(movieId: movieId) {[weak self] (movieDetail) in
             if let movieDetail = movieDetail {
-                self?._movieDictionary = movieDetail
+                self?._movieDetails = movieDetail
             }
             completion()
         }

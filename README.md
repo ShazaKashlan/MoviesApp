@@ -11,7 +11,7 @@ Apply MVVM architecture pattern.
     - Apply MVVM architecture pattern with Protocol Oriented Programming(POP)
     - Apply Dependency Injection
     - Bind Data Using Observable
-    - 'Helpers' folder contains Observable class to Bind data between Model and View Model
+    - 'Helpers' folder contains Observable class to Bind data between View and View Model
     - 'Constansts' folder contains URLs, Colors
     - 'MovieList' folder contains needed classes for view the movie list
     - 'MovieDetails' folder contains needed classes for view single Movie Screen
@@ -46,14 +46,13 @@ Apply MVVM architecture pattern.
 6.  **Movie List**
 
     - MovieListViewController contains table view to show the movies list
-    - - Load more movies by using "addPullToRefresh" When scrolling to top offset
-    - MovieListViewModel
-    - - Control fetch data movies and page number and bind data using Observable
+    - Load more movies by using "addPullToRefresh" When scrolling to top offset
+    - MovieListViewModel Control fetch data movies and page number and bind data using Observable
 
 7.  **Movie Detail**
 
     - MovieDetailViewController shows movie detail
-    - - Loading image for movie detail using 'KingFisher'
+    - MovieDetailsViewModel control fetch data from API Service
 
 8.  **Unit Tests**
     - Understand concept of Given-When-Then pattern
