@@ -8,26 +8,26 @@
 import Foundation
 
 protocol MovieDetailsViewModelProtocol : AnyObject {
-    var movieData: MovieResponse { get }
+    var movieData: Observable<MovieResponse?> { get }
     func loadMovieDetail(movieId: Int, completion: @escaping () -> Void)
 }
 
 class MovieDetailsViewModel : MovieDetailsViewModelProtocol {
-    
-    var movieData: MovieResponse {
-        return _movieDetails!
+    var movieData: Observable<MovieResponse?> {
+        return _movieDetails
     }
     
-    private var _movieDetails: MovieResponse?
+    private var _movieDetails: Observable<MovieResponse?> = Observable(nil)
     private let movieDetailService : MovieDetailServiceProtocol!
     
     init(movieDetailService: MovieDetailServiceProtocol) {
         self.movieDetailService = movieDetailService
     }
+    
     func loadMovieDetail(movieId: Int, completion: @escaping () -> Void) {
         movieDetailService.getMovieDetail(movieId: movieId) {[weak self] (movieDetail) in
             if let movieDetail = movieDetail {
-                self?._movieDetails = movieDetail
+                self?._movieDetails.value = movieDetail
             }
             completion()
         }

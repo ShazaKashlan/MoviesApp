@@ -42,6 +42,9 @@ class MovieDetailsViewController: UIViewController {
         viewModel.loadMovieDetail(movieId: movieId) { [weak self] in
             self?.reloadData()
         }
+        viewModel.movieData.bind { (_) in
+            self.reloadData()
+        }
     }
     
     //MARK: - Private functions
@@ -61,23 +64,22 @@ class MovieDetailsViewController: UIViewController {
         movieNameLabel.text = ""
         releaseDateLabel.text = ""
         overviewContentLabel.text = ""
-        
     }
 
     private func reloadData() {
         //movie title
-        movieNameLabel.text = viewModel.movieData.title
+        movieNameLabel.text = viewModel.movieData.value?.title
         
         // movie overview
-        overviewContentLabel.text = viewModel.movieData.overview
+        overviewContentLabel.text = viewModel.movieData.value?.overview
         
         //release date
         configureReleaseDate(movieData: viewModel.movieData)
         
         //update image poster
-        let posterImageUrlString = viewModel.movieData.posterPath
+        let posterImageUrlString = viewModel.movieData.value?.posterPath as? String ?? ""
         
-        let  url = URL(string: String(format: Domain.assestUrl()+posterImageUrlString!))!
+        let  url = URL(string: String(format: Domain.assestUrl()+posterImageUrlString))!
         
         let processor = DownsamplingImageProcessor(size: posterImageView.bounds.size)
         |> RoundCornerImageProcessor(cornerRadius: 15)
@@ -94,12 +96,9 @@ class MovieDetailsViewController: UIViewController {
             ])
     }
     
-    ///
-    /// Configure Release Date
-    ///
-    private func configureReleaseDate(movieData:MovieResponse) {
+    private func configureReleaseDate(movieData:Observable<MovieResponse?>) {
         //Release date
-        let releaseDateString = movieData.releaseDate ?? ""
+        let releaseDateString = movieData.value?.releaseDate ?? ""
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = Constants.inputFormatter
 
@@ -110,7 +109,7 @@ class MovieDetailsViewController: UIViewController {
         let movieReleaseDate = outputFormatter.string(from: showDate)
         
         //Run time value
-        let movieRunTime = movieData.runtime ?? 0
+        let movieRunTime = movieData.value?.runtime ?? 0
         let (hour, minutes) = minutesToHours(minutes: movieRunTime)
         let runtimeString = "\(hour)h \(minutes)m"
         
@@ -120,7 +119,6 @@ class MovieDetailsViewController: UIViewController {
     private func minutesToHours (minutes : Int) -> (Int, Int) {
       return (minutes / 60, (minutes % 60))
     }
-    
     
     //MARK: - Actions
     @IBAction func closeActionClicked(_ sender: Any) {

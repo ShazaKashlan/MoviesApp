@@ -11,7 +11,6 @@ class MovieListViewModelTests: XCTestCase {
 
     var sut : MovieListViewModel!
     var mockTrendingMoviesService: TrendingMoviesServiceProtocol!
-    var mockMovieDetailService : MovieDetailServiceProtocol!
 
     override func setUp() {
 
@@ -24,7 +23,6 @@ class MovieListViewModelTests: XCTestCase {
     override func tearDown() {
         
         mockTrendingMoviesService = nil
-        mockMovieDetailService = nil
         sut = nil
 
         super.tearDown()
@@ -32,8 +30,7 @@ class MovieListViewModelTests: XCTestCase {
     
     func setupData() {
         mockTrendingMoviesService = TrendingMoviesService()
-        mockMovieDetailService = MovieDetailService()
-        sut = MovieListViewModel(trendingService: mockTrendingMoviesService, movieDetailService: mockMovieDetailService)
+        sut = MovieListViewModel(trendingService: mockTrendingMoviesService)
     }
 
     

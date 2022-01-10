@@ -15,8 +15,6 @@ class MovieListViewController: UIViewController {
     //MARK: - Outlets
     @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var emptyView: UIView!
-    
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
  
     private enum MovieTableSections : Int, CaseIterable {
@@ -26,8 +24,7 @@ class MovieListViewController: UIViewController {
     //MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel = MovieListViewModel( trendingService: TrendingMoviesService(), movieDetailService: MovieDetailService())
+        viewModel = MovieListViewModel( trendingService: TrendingMoviesService())
         showLoader()
        setupTableView()
     }
@@ -45,7 +42,6 @@ class MovieListViewController: UIViewController {
             self.viewModel.fetchTrendingMovies(pageNumber: pageNumber) { [weak self] in
                 self?.moviesTableView.reloadData()
             }
-            
         }
         self.moviesTableView.es.startPullToRefresh()
     }
@@ -108,7 +104,6 @@ extension MovieListViewController : UITableViewDataSource {
         return "Trending Movies"
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.movieTrendigArray.value.count
     }
@@ -117,13 +112,11 @@ extension MovieListViewController : UITableViewDataSource {
         
         let cell:MovieCell = tableView.dequeueReusableCell(withIdentifier: MovieCell.identifier,
                                                            for: indexPath) as! MovieCell
-        
         //configure data
         let movie = viewModel.movieTrendigArray.value[indexPath.row]
         cell.configure(movieData: movie)
         
         return cell
-        
     }
 }
 
@@ -133,7 +126,6 @@ extension MovieListViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
-    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20

@@ -34,9 +34,7 @@ class TrendingMoviesService : TrendingMoviesServiceProtocol {
             if let error = error {
                 self?.errorMessage += "DataTask error: " + error.localizedDescription + "\n"
             } else if let data = data {
-                
                 var response: MoviesResponse
-                
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase

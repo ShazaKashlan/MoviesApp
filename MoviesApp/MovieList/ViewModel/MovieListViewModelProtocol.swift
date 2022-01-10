@@ -11,13 +11,10 @@ import Foundation
 protocol MovieListViewModelProtocol : AnyObject {
     var movieTrendigArray: Observable<[Movie]> { get }
     var pageNumber : Int { get set }
-    
-    //MARK: - fetch movies
     func fetchTrendingMovies(pageNumber: Int, completion: @escaping () -> Void)
 }
 
 class MovieListViewModel : MovieListViewModelProtocol {
-    
     var pageNumber: Int
     var _movieTrendingArray: Observable<[Movie]> = Observable([])
     var movieTrendigArray: Observable<[Movie]> {
@@ -25,11 +22,9 @@ class MovieListViewModel : MovieListViewModelProtocol {
     }
     
     private var _trendingService : TrendingMoviesServiceProtocol!
-    private var _movieDetailService: MovieDetailServiceProtocol!
     
-    init( trendingService: TrendingMoviesServiceProtocol, movieDetailService: MovieDetailServiceProtocol) {
+    init( trendingService: TrendingMoviesServiceProtocol) {
         self._trendingService = trendingService
-        self._movieDetailService = movieDetailService
         self.pageNumber = 1
     }
     
@@ -41,7 +36,6 @@ class MovieListViewModel : MovieListViewModelProtocol {
                 self?.movieTrendigArray.value.append(contentsOf: jsonArray)
             }
             completion()
-            
         }
     }
 }

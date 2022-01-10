@@ -37,7 +37,6 @@ class MovieDetailService : MovieDetailServiceProtocol {
                 
                 var response: MovieResponse?
                 
-                
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase

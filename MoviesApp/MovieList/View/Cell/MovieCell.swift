@@ -13,28 +13,20 @@ class MovieCell : UITableViewCell{
     
     // MARK: - IBOutlets
     @IBOutlet weak var poster: UIImageView!
-    
-    static let identifier = "MovieCell"
-    
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var title: UILabel!
     
-    //MARK: - Public functions
+    static let identifier = "MovieCell"
+    
     func configure(movieData: Movie) {
         self.backgroundColor = .clear
-        
-        //Update Data
         title.text = movieData.title as? String ?? ""
-        releaseDate.text = ""// release date config at configureReleaseDate
-        
-        //update Image
+        releaseDate.text = ""
         let  url = URL(string: String(format: Domain.assestUrl()+(movieData.posterPath)! ))
-        
         let processor = DownsamplingImageProcessor(size: poster.bounds.size)
         |> RoundCornerImageProcessor(cornerRadius: 12)
         poster.kf.indicatorType = .activity
         poster.kf.setImage(
-            
             with: url,
             placeholder: UIImage(named: "placeholderImage"),
             options: [
@@ -43,12 +35,10 @@ class MovieCell : UITableViewCell{
                 .transition(.fade(1)),
                 .cacheOriginalImage
             ])
-        
         self.configureReleaseDate(movie: movieData)
-        
     }
  
-    //MARK: - Private functions
+    //MARK: - configure Movie Date
     private func configureReleaseDate(movie: Movie) {
         //Release Date value
         let releaseDateString = movie.releaseDate as? String ?? ""
