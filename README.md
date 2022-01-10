@@ -45,14 +45,14 @@ Apply MVVM architecture pattern.
 
 6.  **Movie List**
 
-    - MovieListViewController contains table view to show the movies list
+    - MovieListViewController : contains table view to show the movies list
     - Load more movies by using "addPullToRefresh" When scrolling to top offset
-    - MovieListViewModel Control fetch data movies and page number and bind data using Observable
+    - MovieListViewModel : Control fetch data movies and page number and bind data using Observable
 
 7.  **Movie Detail**
 
-    - MovieDetailViewController shows movie detail
-    - MovieDetailsViewModel control fetch data from API Service
+    - MovieDetailViewController : shows movie detail
+    - MovieDetailsViewModel : control fetch data from API Service
 
 8.  **Unit Tests**
     - Understand concept of Given-When-Then pattern
